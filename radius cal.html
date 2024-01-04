@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radius & Circle</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              background-color: #f0f0f0;
+            }
+        
+            h1 {
+              text-align: center;
+              color: #333333;
+            }
+        
+            .container {
+              width: 80%;
+              margin: 0 auto;
+            }
+        
+            .section { 
+              border: 1px solid #cccccc;
+              padding: 20px;
+              margin: 10px;
+            }
+        
+            .input {
+              width: 50%;
+              margin: 10px;
+            }
+        
+            .select {
+              width: 20%;
+              margin: 10px;
+            }
+        
+            .button {
+              display: inline-block;
+              padding: 10px 20px;
+              background-color: #0099ff;
+              color: white;
+              text-decoration: none;
+            }
+        
+            .button:hover {
+              background-color: #0077cc;
+            }
+        
+            .result {
+              font-size: 20px;
+              font-weight: bold;
+              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <h1>Radius aur Circle Area Calculator</h1>
+            <div class="section">
+              <p>Is calculator se aap radius aur circle area ke beech me convert kar sakte hain. Aapko bas input value aur uska type select karna hai aur phir convert button dabana hai. Aapko niche result mil jayega.</p>
+              <input type="number" id="input" class="input" placeholder="Input value" min="0">
+              <select id="select" class="select">
+                <option value="radius">Radius</option>
+                <option value="area">Circle Area</option>
+              </select>
+             <button id="button" class="button" onclick="cal()">Convert</button>
+              <p id="result" class="result"></p>
+            </div>
+          </div>
+          <script>
+            var input = document.getElementById("input");
+            var select = document.getElementById("select");
+            // var button = document.getElementById("button");
+            var result = document.getElementById("result");
+        
+            function cal(){
+            // button.addEventListener("click", function cal() {
+              // Input value aur select value ko variables me store kara
+              var inputValue = parseFloat(input.value);
+              var selectValue = select.value;
+        
+              // Agar input value valid hai to
+              if (!isNaN(inputValue) && inputValue >= 0) {
+                // Agar select value radius hai to
+                if (selectValue === "radius") {
+                  // Circle area ka formula lagaya hain
+                  // Area = π × r^2
+                  var area = Math.PI * Math.pow(inputValue, 2);
+                  // Result element me result dikhaya hain
+                  result.textContent = "Radius " + inputValue + " ke liye circle area " + area.toFixed(2) + " hai.";
+                }
+                // Agar select value area hai to
+                else if (selectValue === "area") {
+                  // Radius ka formula lagaya
+                  // Radius = √(A / π)
+                  var radius = Math.sqrt(inputValue / Math.PI);
+                  // Result element me result dikhaya
+                  result.textContent = "Circle area " + inputValue + " ke liye radius " + radius.toFixed(2) + " hai.";
+                }
+              }
+              // Agar input value invalid hai to
+              else {
+                // Result element me error message dikhaya
+                result.textContent = "Please ek valid input value dale.";
+              }
+            // });
+            }
+        
+            // document per keydown listener lagaya
+            document.addEventListener('keydown', handleKeyDown);
+
+            function handleKeyDown(event){
+                if (event.key === 'Enter'){
+                    cal();
+                }
+            }
+          </script>
+        </body>
+        </html>
+        
